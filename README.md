@@ -20,7 +20,7 @@ InfSim has three main components (found under `src/infsim`):
 ### Setup
 
 #### Requirements
-- Python 3.9
+- Python 3.9+ (recommended 3.12+)
 
 #### Installation
 After cloning the repository, navigate to the root directory and install the requirements in a virtual environment.
