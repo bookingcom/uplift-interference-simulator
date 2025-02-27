@@ -40,7 +40,7 @@ jobs:
         pytest --junitxml=pytest.xml --cov=infsim --cov-report term-missing --cov-fail-under 100
         
     - name: Upload test results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: pytest.xml
