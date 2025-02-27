@@ -2,22 +2,19 @@ name: Python Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v3
-    
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
-        
     - name: Cache Python dependencies
       uses: actions/cache@v3
       with:
@@ -25,7 +22,6 @@ jobs:
           .pytest_cache
           venv
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -34,11 +30,11 @@ jobs:
         source venv/bin/activate
         pip install -r requirements.txt
         pip install -e .
-        
+        pip install pytest pytest-cov
     - name: Run tests
       run: |
+        source venv/bin/activate
         pytest --junitxml=pytest.xml --cov=infsim --cov-report term-missing --cov-fail-under 100
-        
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
@@ -48,15 +44,12 @@ jobs:
 
   style:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v3
-    
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
-        
     - name: Run pre-commit checks
       run: |
         pip install pre-commit
