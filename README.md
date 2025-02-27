@@ -1,4 +1,4 @@
-## Clustered Network Inference Simulator (InfSim)
+## Clustered Network Interference Simulator (InfSim)
 
 ### About InfSim
 This repository contains the code for InfSim, a simulation framework for cluster network interference published alongside the paper:
